@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://SCENES/GAME/PLAYER/Rotation_Helper.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+height = 2.47016
+
+[node name="KinematicBody" type="KinematicBody" groups=[
+"player",
+]]
+script = ExtResource( 1 )
+
+[node name="Rotation_Helper" type="Spatial" parent="."]
+script = ExtResource( 2 )
+
+[node name="Model" type="Spatial" parent="Rotation_Helper"]
+
+[node name="Camera" type="Camera" parent="Rotation_Helper"]
+far = 800.0
+
+[node name="Flashlight" type="SpotLight" parent="Rotation_Helper"]
+spot_range = 19.4484
+spot_angle = 30.8478
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -2.46143, 0 )
+shape = SubResource( 1 )
+
+[node name="FootstepPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="BreathingPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="SprintTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control"]
+margin_left = 10.0
+margin_top = 453.0
+margin_right = 193.0
+margin_bottom = 467.0
