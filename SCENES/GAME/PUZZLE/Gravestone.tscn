@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://SCENES/GAME/PUZZLE/Gravestone.gd" type="Script" id=1]
+[ext_resource path="res://MODELS/gravestone.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://MODELS/candle.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://MODELS/skull.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://MODELS/paper.obj" type="ArrayMesh" id=5]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1.52509, 2.43361, 1 )
+
+[node name="Gravestone" type="Area"]
+script = ExtResource( 1 )
+interaction_text = "Missing ritual items"
+
+[node name="gravestone" type="MeshInstance" parent="."]
+mesh = ExtResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47367, 0 )
+shape = SubResource( 1 )
+
+[node name="RitualPieces" type="Spatial" parent="."]
+transform = Transform( 0.89235, 0, -0.451345, 0, 1, 0, 0.451345, 0, 0.89235, -1.12271, 0.661523, -0.365276 )
+visible = false
+
+[node name="skull" type="MeshInstance" parent="RitualPieces"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.479802, 0.0743908, -0.291491 )
+mesh = ExtResource( 4 )
+material/0 = null
+
+[node name="paper" type="MeshInstance" parent="RitualPieces"]
+transform = Transform( 0.892237, -0.451312, 0.0151687, -0.0109072, 0.0120424, 0.999868, -0.451435, -0.892285, 0.00582213, 1.31705, -5.05564, -0.835752 )
+mesh = ExtResource( 5 )
+material/0 = null
+
+[node name="candle" type="MeshInstance" parent="RitualPieces"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08169, -0.851561, -8.59232 )
+mesh = ExtResource( 3 )
+material/0 = null
+material/1 = null
+
+[node name="OmniLight" type="OmniLight" parent="RitualPieces/candle"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.16196, 2.15102, 6.32782 )
+light_color = Color( 0.803922, 0.372549, 0.372549, 1 )
+omni_range = 4.07468

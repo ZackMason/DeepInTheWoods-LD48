@@ -11,7 +11,6 @@ onready var _breathing_sound = preload("res://SOUND/breathing_001.wav")
 
 #---------------------------------------------------------------------------------------------------
 # data
-const GRAVITY = -24.8
 var vel = Vector3()
 const MAX_SPEED = 20
 const JUMP_SPEED = 18
@@ -25,12 +24,12 @@ const MAX_SLOPE_ANGLE = 40
 onready var camera = $Rotation_Helper/Camera
 onready var rotation_helper = $Rotation_Helper
 
-var MOUSE_SENSITIVITY = 0.5
-
 var stamina = 100
 
 onready var last_step_position = global_transform.origin
 export var step_size = 1.7
+
+onready var interact_ray_cast = $Rotation_Helper/Camera/RayCast
 
 onready var _sprint_timer = $SprintTimer
 #---------------------------------------------------------------------------------------------------
@@ -43,6 +42,7 @@ func _ready():
 func _physics_process(delta):
 	process_input(delta)
 	process_movement(delta)
+	process_interact(delta)
 	
 	$CanvasLayer/Control/ProgressBar.value = stamina
 	
@@ -52,8 +52,8 @@ func _physics_process(delta):
 		
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotation_helper.rotate_x(deg2rad(-event.relative.y * MOUSE_SENSITIVITY))
-		self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+		rotation_helper.rotate_x(deg2rad(-event.relative.y * Globals.MOUSE_SENSITIVITY))
+		self.rotate_y(deg2rad(event.relative.x * Globals.MOUSE_SENSITIVITY * -1))
 
 		var camera_rot = rotation_helper.rotation_degrees
 		camera_rot.x = clamp(camera_rot.x, -70, 70)
@@ -65,9 +65,25 @@ func _input(event):
 #---------------------------------------------------------------------------------------------------
 # public functions
 
+func respawn():
+	var spawner = get_tree().get_nodes_in_group('player_spawn')[0]
+	var pos = spawner.get_spawn_point(global_transform.origin)
+	
+	global_transform.origin = pos
+	
 #---------------------------------------------------------------------------------------------------
 # private functions
 
+func process_interact(delta):
+	var body = interact_ray_cast.get_collider()
+	if body is Interactable:
+		$CanvasLayer/Control/Label.text = body.interaction_text
+		
+		if Input.is_action_just_pressed("interact"):
+			body.interact(self)
+	else:
+		$CanvasLayer/Control/Label.text = ''
+		
 func process_input(delta):
 	# ----------------------------------
 	# Walking
@@ -112,12 +128,12 @@ func process_movement(delta):
 	dir.y = 0
 	dir = dir.normalized()
 
-	vel.y += delta * GRAVITY
+	vel.y += delta * Globals.GRAVITY if !is_on_floor() else 0.0
 
 	var hvel = vel
 	hvel.y = 0
 
-	var sprint = Input.is_action_pressed("sprint") and _sprint_timer.time_left <= 0.0
+	var sprint = Input.is_action_pressed("sprint") and _sprint_timer.time_left <= 0.0 and is_on_floor()
 	
 	if sprint:
 		stamina -= 100.0 * delta

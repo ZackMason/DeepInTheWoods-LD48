@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/cart.obj-9029be9a549c6768c4d7308d749737df.mesh"
+
+[deps]
+
+files=[ "res://.import/cart.obj-9029be9a549c6768c4d7308d749737df.mesh" ]
+
+source_file="res://MODELS/cart.obj"
+dest_files=[ "res://.import/cart.obj-9029be9a549c6768c4d7308d749737df.mesh", "res://.import/cart.obj-9029be9a549c6768c4d7308d749737df.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

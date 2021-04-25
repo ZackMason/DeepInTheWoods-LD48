@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/horror_scream.mp3-1d45892dac99b2a3127395193843af8a.mp3str"
+
+[deps]
+
+source_file="res://SOUND/horror_scream.mp3"
+dest_files=[ "res://.import/horror_scream.mp3-1d45892dac99b2a3127395193843af8a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/moon.obj-9cdc3f921f3cc19c1345cc7592499202.mesh"
+
+[deps]
+
+files=[ "res://.import/moon.obj-9cdc3f921f3cc19c1345cc7592499202.mesh" ]
+
+source_file="res://MODELS/moon.obj"
+dest_files=[ "res://.import/moon.obj-9cdc3f921f3cc19c1345cc7592499202.mesh", "res://.import/moon.obj-9cdc3f921f3cc19c1345cc7592499202.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
