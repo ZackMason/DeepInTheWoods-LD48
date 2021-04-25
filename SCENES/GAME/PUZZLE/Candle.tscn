@@ -6,7 +6,9 @@
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.23264, 2.26441, 1.19111 )
 
-[node name="Candle" type="Area"]
+[node name="Candle" type="Area" groups=[
+"puzzle_cleanup",
+]]
 script = ExtResource( 2 )
 interaction_text = "Press e to pickup candle"
 

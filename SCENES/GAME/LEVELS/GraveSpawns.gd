@@ -15,6 +15,9 @@ onready var _grave = preload("res://SCENES/GAME/PUZZLE/Gravestone.tscn")
 # overrides
 func _ready():
 	randomize()
+	spawn()
+	
+func spawn():
 	var spawns = get_children()
 	var ri = randi() % spawns.size()
 	var spawn = spawns[ri]

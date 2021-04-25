@@ -1,4 +1,4 @@
-extends Spatial
+extends Control
 #class_name
 #---------------------------------------------------------------------------------------------------
 # signals
@@ -6,7 +6,8 @@ extends Spatial
 #---------------------------------------------------------------------------------------------------
 # resources
 
-onready var _paper = preload("res://SCENES/GAME/PUZZLE/Paper.tscn")
+onready var _game = preload("res://SCENES/GAME/LEVELS/World.tscn")
+
 
 #---------------------------------------------------------------------------------------------------
 # data
@@ -14,16 +15,8 @@ onready var _paper = preload("res://SCENES/GAME/PUZZLE/Paper.tscn")
 #---------------------------------------------------------------------------------------------------
 # overrides
 func _ready():
-	randomize()
-	spawn()
-	
-func spawn():
-	var spawns = get_children()
-	var ri = randi() % spawns.size()
-	var spawn = spawns[ri]
-	spawn.add_child(_paper.instance())
+	pass
 
-	print('%s spawned at %d' % [spawn.name, (ri+1)])
 #---------------------------------------------------------------------------------------------------
 # events/signals
 
@@ -34,3 +27,10 @@ func spawn():
 # private functions
 
 #---------------------------------------------------------------------------------------------------
+
+func _on_Play_pressed():
+	get_tree().change_scene("res://SCENES/GAME/LEVELS/World.tscn")
+
+
+func _on_Exit_pressed():
+	get_tree().quit()

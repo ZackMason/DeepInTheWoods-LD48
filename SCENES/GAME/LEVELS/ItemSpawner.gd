@@ -14,6 +14,9 @@ export (Resource) var item
 # overrides
 func _ready():
 	randomize()
+	spawn()
+	
+func spawn():
 	var spawns = get_children()
 	var ri = randi() % spawns.size()
 	var spawn = spawns[ri]

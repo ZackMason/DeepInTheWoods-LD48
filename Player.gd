@@ -44,13 +44,20 @@ func _physics_process(delta):
 	process_movement(delta)
 	process_interact(delta)
 	
-	$CanvasLayer/Control/ProgressBar.value = stamina
+	if global_transform.origin.y < -250:
+		respawn()
+	
+	
+	$CanvasLayer/UI/ProgressBar.value = stamina
 	
 	if last_step_position.distance_to(global_transform.origin) > step_size and not $FootstepPlayer.playing:
 		last_step_position = global_transform.origin
 		$FootstepPlayer.play()
 		
 func _input(event):
+	if event is InputEventMouseButton and Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotation_helper.rotate_x(deg2rad(-event.relative.y * Globals.MOUSE_SENSITIVITY))
 		self.rotate_y(deg2rad(event.relative.x * Globals.MOUSE_SENSITIVITY * -1))
@@ -71,18 +78,20 @@ func respawn():
 	
 	global_transform.origin = pos
 	
+	$CanvasLayer/UI.fade()
+	
 #---------------------------------------------------------------------------------------------------
 # private functions
 
 func process_interact(delta):
 	var body = interact_ray_cast.get_collider()
 	if body is Interactable:
-		$CanvasLayer/Control/Label.text = body.interaction_text
+		$CanvasLayer/UI/Label.text = body.interaction_text
 		
 		if Input.is_action_just_pressed("interact"):
 			body.interact(self)
 	else:
-		$CanvasLayer/Control/Label.text = ''
+		$CanvasLayer/UI/Label.text = ''
 		
 func process_input(delta):
 	# ----------------------------------

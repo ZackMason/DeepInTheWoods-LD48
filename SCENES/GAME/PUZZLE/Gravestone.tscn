@@ -9,7 +9,9 @@
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.52509, 2.43361, 1 )
 
-[node name="Gravestone" type="Area"]
+[node name="Gravestone" type="Area" groups=[
+"puzzle_cleanup",
+]]
 script = ExtResource( 1 )
 interaction_text = "Missing ritual items"
 

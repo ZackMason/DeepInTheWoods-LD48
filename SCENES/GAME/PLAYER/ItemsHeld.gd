@@ -1,4 +1,4 @@
-extends Spatial
+extends HBoxContainer
 #class_name
 #---------------------------------------------------------------------------------------------------
 # signals
@@ -6,24 +6,20 @@ extends Spatial
 #---------------------------------------------------------------------------------------------------
 # resources
 
-onready var _paper = preload("res://SCENES/GAME/PUZZLE/Paper.tscn")
-
 #---------------------------------------------------------------------------------------------------
 # data
 
 #---------------------------------------------------------------------------------------------------
 # overrides
 func _ready():
-	randomize()
-	spawn()
+	pass
 	
-func spawn():
-	var spawns = get_children()
-	var ri = randi() % spawns.size()
-	var spawn = spawns[ri]
-	spawn.add_child(_paper.instance())
+func _process(delta):
+	$Key.visible = PuzzleProgress.has_key
+	$Candle.visible = PuzzleProgress.ritual_progress.candle
+	$Skull.visible = PuzzleProgress.ritual_progress.skull
+	$Paper.visible = PuzzleProgress.ritual_progress.paper
 
-	print('%s spawned at %d' % [spawn.name, (ri+1)])
 #---------------------------------------------------------------------------------------------------
 # events/signals
 

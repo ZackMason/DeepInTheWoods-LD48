@@ -18,7 +18,9 @@ enum eState {
 export(eState) var state = eState.IDLE
 
 export(NodePath) var target_path
+export(NodePath) var controller_path
 
+onready var _controller = get_node(controller_path)
 onready var target = get_node(target_path)
 
 
@@ -65,11 +67,13 @@ func _on_SenseArea_body_entered(body):
 	if body is Player:
 		state = eState.WALKING
 		$AudioStreamPlayer3D.play()
+		_controller.player_not_found = false
 		
 func _on_SenseArea_body_exited(body):
 	if body is Player:
 		state = eState.IDLE
 		$AudioStreamPlayer3D.stop()
+		_controller.player_not_found = true
 
 func _on_KillZone_body_entered(body):
 	if body is Player:

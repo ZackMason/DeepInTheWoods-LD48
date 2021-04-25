@@ -502,7 +502,9 @@ radius = 129.901
 [sub_resource type="BoxShape" id=18]
 extents = Vector3( 3.81874, 7.27296, 8.05041 )
 
-[node name="horror_01" type="KinematicBody"]
+[node name="horror_01" type="KinematicBody" groups=[
+"horror",
+]]
 collision_layer = 4
 script = ExtResource( 2 )
 

@@ -4,7 +4,9 @@
 [ext_resource path="res://MODELS/Material_003.material" type="Material" id=2]
 [ext_resource path="res://MODELS/cart.obj" type="ArrayMesh" id=3]
 
-[node name="Cart" type="Spatial"]
+[node name="Cart" type="Spatial" groups=[
+"puzzle_cleanup",
+]]
 
 [node name="cart" type="MeshInstance" parent="."]
 mesh = ExtResource( 3 )

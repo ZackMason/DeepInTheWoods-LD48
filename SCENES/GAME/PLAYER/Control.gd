@@ -1,4 +1,4 @@
-extends Spatial
+extends Control
 #class_name
 #---------------------------------------------------------------------------------------------------
 # signals
@@ -6,24 +6,19 @@ extends Spatial
 #---------------------------------------------------------------------------------------------------
 # resources
 
-onready var _paper = preload("res://SCENES/GAME/PUZZLE/Paper.tscn")
-
 #---------------------------------------------------------------------------------------------------
 # data
 
 #---------------------------------------------------------------------------------------------------
 # overrides
 func _ready():
-	randomize()
-	spawn()
+	pass
 	
-func spawn():
-	var spawns = get_children()
-	var ri = randi() % spawns.size()
-	var spawn = spawns[ri]
-	spawn.add_child(_paper.instance())
-
-	print('%s spawned at %d' % [spawn.name, (ri+1)])
+func fade():
+	var tween = $Tween
+	tween.interpolate_property($ColorRect, 'color:a', 255, 0, 1.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	tween.start()
+	
 #---------------------------------------------------------------------------------------------------
 # events/signals
 

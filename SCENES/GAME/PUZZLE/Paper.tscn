@@ -8,6 +8,7 @@ extents = Vector3( 8.23023, 0.0588437, 9.61694 )
 
 [node name="Paper" type="Area" groups=[
 "interactable",
+"puzzle_cleanup",
 ]]
 transform = Transform( 0.993203, 0, 0, 0, 0.993203, 0, 0, 0, 0.993203, 0, 0, 0 )
 script = ExtResource( 2 )

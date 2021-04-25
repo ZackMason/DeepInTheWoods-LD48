@@ -6,30 +6,32 @@ extends Spatial
 #---------------------------------------------------------------------------------------------------
 # resources
 
-onready var _paper = preload("res://SCENES/GAME/PUZZLE/Paper.tscn")
-
 #---------------------------------------------------------------------------------------------------
 # data
 
 #---------------------------------------------------------------------------------------------------
 # overrides
 func _ready():
-	randomize()
-	spawn()
-	
-func spawn():
-	var spawns = get_children()
-	var ri = randi() % spawns.size()
-	var spawn = spawns[ri]
-	spawn.add_child(_paper.instance())
+	pass
 
-	print('%s spawned at %d' % [spawn.name, (ri+1)])
 #---------------------------------------------------------------------------------------------------
 # events/signals
 
 #---------------------------------------------------------------------------------------------------
 # public functions
 
+func reset_game():
+	PuzzleProgress.reset_ritual()
+	$HorrorController.monster_chase_time = 120
+	$horror_01.global_transform.origin = Vector3(265, 7, -300)
+	
+	get_tree().call_group('puzzle_cleanup', 'queue_free')
+	
+	$PaperSpawns.spawn()
+	$GraveSpawns.spawn()
+	$SkullSpawns.spawn()
+	$KeySpawns.spawn()
+	
 #---------------------------------------------------------------------------------------------------
 # private functions
 

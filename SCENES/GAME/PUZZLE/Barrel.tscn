@@ -4,7 +4,9 @@
 [ext_resource path="res://MODELS/Material_003.material" type="Material" id=2]
 [ext_resource path="res://MODELS/barrel.obj" type="ArrayMesh" id=3]
 
-[node name="Barrel" type="Spatial"]
+[node name="Barrel" type="Spatial" groups=[
+"puzzle_cleanup",
+]]
 
 [node name="Skull" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.167246, 3.39122, -0.143337 )
