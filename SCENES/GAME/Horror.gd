@@ -41,7 +41,9 @@ func _process(delta):
 		eState.WALKING:
 			$AnimationPlayer.play("WALK")
 			velocity += -global_transform.basis.z * 11.3 * delta
-			global_transform.basis = global_transform.basis.slerp(global_transform.looking_at(target.global_transform.origin, Vector3.UP).basis, 0.9975)
+			var tpos = target.global_transform.origin
+			tpos.y = global_transform.origin.y
+			global_transform.basis = global_transform.basis.slerp(global_transform.looking_at(tpos, Vector3.UP).basis, 0.9975)
 		
 	velocity = move_and_slide(velocity, Vector3.UP,  0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
 	

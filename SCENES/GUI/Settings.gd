@@ -9,18 +9,13 @@ extends Control
 #---------------------------------------------------------------------------------------------------
 # data
 
+export var ingame = false
+
 #---------------------------------------------------------------------------------------------------
 # overrides
 func _ready():
-	pass
-	
-func fade():
-	var tween = $Tween
-	tween.interpolate_property($ColorRect, 'color:a', 255, 0, 1.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-	tween.start()
-	
-func _process(delta):
-	$PauseMenu.visible = Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE
+	$VBoxContainer/HSlider.value = Globals.MOUSE_SENSITIVITY
+
 #---------------------------------------------------------------------------------------------------
 # events/signals
 
@@ -31,10 +26,16 @@ func _process(delta):
 # private functions
 
 #---------------------------------------------------------------------------------------------------
-func _on_Menu_pressed():
-	$Settings.visible = true
-	get_tree().paused = true
 
-func _on_Resume_pressed():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	get_tree().paused = false
+
+func _on_Exit_pressed():
+	if not ingame:
+		get_tree().change_scene("res://SCENES/GUI/Main Menu.tscn")
+	else:
+		visible = false
+
+
+func _on_HSlider_value_changed(value):
+	Globals.MOUSE_SENSITIVITY = value
+	
+	pass # Replace with function body.

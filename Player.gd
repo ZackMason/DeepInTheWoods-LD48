@@ -50,11 +50,12 @@ func _physics_process(delta):
 	
 	$CanvasLayer/UI/ProgressBar.value = stamina
 	
-	if last_step_position.distance_to(global_transform.origin) > step_size and not $FootstepPlayer.playing:
+	if last_step_position.distance_to(global_transform.origin) > step_size and not $FootstepPlayer.playing and is_on_floor():
 		last_step_position = global_transform.origin
 		$FootstepPlayer.play()
 		
 func _input(event):
+	
 	if event is InputEventMouseButton and Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
@@ -131,7 +132,9 @@ func process_input(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			get_tree().paused = true
 	# ----------------------------------
+	
 
 func process_movement(delta):
 	dir.y = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://SCENES/GAME/PLAYER/Rotation_Helper.gd" type="Script" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://TEXTURES/key_icon.png" type="Texture" id=6]
 [ext_resource path="res://TEXTURES/candle_icon.png" type="Texture" id=7]
 [ext_resource path="res://SCENES/GAME/PLAYER/ItemsHeld.gd" type="Script" id=8]
+[ext_resource path="res://TEXTURES/menu_button.png" type="Texture" id=9]
+[ext_resource path="res://SCENES/GUI/Settings.tscn" type="PackedScene" id=10]
+[ext_resource path="res://TEXTURES/resume_button.png" type="Texture" id=11]
 
 [sub_resource type="CapsuleShape" id=1]
 height = 2.47016
@@ -51,6 +54,7 @@ one_shot = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" type="Control" parent="CanvasLayer"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
@@ -118,5 +122,45 @@ margin_right = 140.0
 margin_bottom = 32.0
 texture = ExtResource( 5 )
 
+[node name="PauseMenu" type="Control" parent="CanvasLayer/UI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="TextureButton" parent="CanvasLayer/UI/PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 55.0
+margin_top = 355.0
+margin_right = 109.0
+margin_bottom = 395.0
+texture_normal = ExtResource( 9 )
+
+[node name="Resume" type="TextureButton" parent="CanvasLayer/UI/PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 280.0
+margin_top = 243.0
+margin_right = 363.0
+margin_bottom = 283.0
+texture_normal = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" parent="CanvasLayer/UI" instance=ExtResource( 10 )]
+pause_mode = 2
+visible = false
+ingame = true
+
 [node name="Listener" type="Listener" parent="."]
 current = true
+
+[connection signal="pressed" from="CanvasLayer/UI/PauseMenu/Menu" to="CanvasLayer/UI" method="_on_Menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/PauseMenu/Resume" to="CanvasLayer/UI" method="_on_Resume_pressed"]
