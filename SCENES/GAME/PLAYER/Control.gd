@@ -19,6 +19,11 @@ func fade():
 	tween.interpolate_property($ColorRect, 'color:a', 255, 0, 1.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
 	
+func blink():
+	var tween = $Tween
+	tween.interpolate_property($ColorRect, 'color:a', 255, 0, .124, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	tween.start()
+	
 func _process(delta):
 	$PauseMenu.visible = Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE
 #---------------------------------------------------------------------------------------------------

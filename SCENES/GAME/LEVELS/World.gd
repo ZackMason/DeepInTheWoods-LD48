@@ -27,6 +27,8 @@ func reset_game():
 	
 	get_tree().call_group('puzzle_cleanup', 'queue_free')
 	
+	$ground/house.reset_game()
+	
 	$PaperSpawns.spawn()
 	$GraveSpawns.spawn()
 	$SkullSpawns.spawn()

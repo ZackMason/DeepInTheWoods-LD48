@@ -32,13 +32,29 @@ export var step_size = 1.7
 onready var interact_ray_cast = $Rotation_Helper/Camera/RayCast
 
 onready var _sprint_timer = $SprintTimer
+
+
+var looking_at_monster = false
+
 #---------------------------------------------------------------------------------------------------
 # overrides
 func _ready():
 	$FootstepPlayer.stream = _foot_step_sound
 	$BreathingPlayer.stream = _breathing_sound
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	$CanvasLayer/UI.fade()
+	
+	randomize()
+	$BlinkTimer.wait_time = rand_range(10.0, 15.0)
 
+func _process(delta):
+	var monsters = get_tree().get_nodes_in_group('horror')
+	var forward = -global_transform.basis.z
+	for m in monsters:
+		var dist_to = global_transform.origin.distance_to(m.global_transform.origin) < 100.0
+		var vec_to = global_transform.origin.direction_to(m.global_transform.origin)
+		looking_at_monster = (vec_to.dot(forward) > 0.85) and dist_to
+	
 func _physics_process(delta):
 	process_input(delta)
 	process_movement(delta)
@@ -174,3 +190,9 @@ func process_movement(delta):
 	vel = move_and_slide(vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
 
 #---------------------------------------------------------------------------------------------------
+
+
+func _on_BlinkTimer_timeout():
+	$CanvasLayer/UI.blink()
+	$BlinkTimer.wait_time = rand_range(10.0, 15.0) * (0.5 if looking_at_monster else 1.0)
+	

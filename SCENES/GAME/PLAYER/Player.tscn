@@ -15,7 +15,7 @@
 [sub_resource type="CapsuleShape" id=1]
 height = 2.47016
 
-[node name="KinematicBody" type="KinematicBody" groups=[
+[node name="Player" type="KinematicBody" groups=[
 "player",
 ]]
 collision_mask = 7
@@ -162,5 +162,9 @@ ingame = true
 [node name="Listener" type="Listener" parent="."]
 current = true
 
+[node name="BlinkTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="pressed" from="CanvasLayer/UI/PauseMenu/Menu" to="CanvasLayer/UI" method="_on_Menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/PauseMenu/Resume" to="CanvasLayer/UI" method="_on_Resume_pressed"]
+[connection signal="timeout" from="BlinkTimer" to="." method="_on_BlinkTimer_timeout"]

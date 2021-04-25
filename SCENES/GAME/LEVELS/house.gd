@@ -27,7 +27,7 @@ func reset_game():
 	var c = _candle.instance()
 	
 	$Door/CandleSpawn.add_child(c)
-	
+	$Door.interaction_text = 'The door is locked'
 	
 	
 #---------------------------------------------------------------------------------------------------
