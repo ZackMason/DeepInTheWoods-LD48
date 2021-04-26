@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://TEXTURES/play_button.png" type="Texture" id=1]
 [ext_resource path="res://TEXTURES/settings_button.png" type="Texture" id=2]
 [ext_resource path="res://TEXTURES/exit_button.png" type="Texture" id=3]
 [ext_resource path="res://SCENES/GUI/Main Menu.gd" type="Script" id=4]
+[ext_resource path="res://TEXTURES/tips_button.png" type="Texture" id=5]
+[ext_resource path="res://TEXTURES/title.png" type="Texture" id=6]
 
 [node name="Main Menu" type="Control"]
 anchor_right = 1.0
@@ -13,19 +15,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="TextureRect" parent="."]
 margin_left = 285.0
 margin_top = 35.9445
 margin_right = 355.0
 margin_bottom = 49.9445
 grow_horizontal = 2
 grow_vertical = 2
-text = "Game Title"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource( 6 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -54,13 +51,24 @@ margin_bottom = 63.0
 grow_horizontal = 2
 texture_normal = ExtResource( 2 )
 
-[node name="Exit" type="TextureButton" parent="VBoxContainer"]
+[node name="Tips" type="TextureButton" parent="VBoxContainer"]
 margin_top = 78.0
 margin_right = 110.0
-margin_bottom = 96.0
+margin_bottom = 102.0
+texture_normal = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="TextureButton" parent="VBoxContainer"]
+margin_top = 117.0
+margin_right = 110.0
+margin_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource( 3 )
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Tips" to="." method="_on_Tips_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_Exit_pressed"]

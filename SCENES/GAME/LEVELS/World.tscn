@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://MODELS/ground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MODELS/Material_003.material" type="Material" id=2]
@@ -22,7 +22,6 @@
 [ext_resource path="res://SCENES/GAME/LEVELS/PlayerSpawns.gd" type="Script" id=20]
 [ext_resource path="res://SCENES/GAME/HorrorController.tscn" type="PackedScene" id=21]
 [ext_resource path="res://SCENES/GAME/LEVELS/World.gd" type="Script" id=22]
-[ext_resource path="res://TEXTURES/bark_001.jpg" type="Texture" id=23]
 
 [sub_resource type="BoxShape" id=27]
 extents = Vector3( 0.435418, 4.0064, 1.99076 )
@@ -32,9 +31,6 @@ data = PoolVector3Array( -6.3474, 13.1248, 8.1726, -6.3474, -1.0889, 8.1726, -5.
 
 [sub_resource type="BoxShape" id=29]
 extents = Vector3( 0.0780161, 4.23352, 2.49121 )
-
-[sub_resource type="SpatialMaterial" id=30]
-albedo_texture = ExtResource( 23 )
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_unshaded = true
@@ -162,7 +158,7 @@ shape = SubResource( 29 )
 
 [node name="trees" type="MeshInstance" parent="ground"]
 mesh = ExtResource( 7 )
-material/0 = SubResource( 30 )
+material/0 = null
 material/1 = null
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
@@ -1120,7 +1116,7 @@ script = ExtResource( 9 )
 transform = Transform( 0.21525, 0.946758, -0.23941, -0.0545092, 0.256423, 0.965026, 0.975036, -0.194672, 0.106802, -240.8, 5.49456, -246.763 )
 
 [node name="2" type="Position3D" parent="PaperSpawns"]
-transform = Transform( 0.961345, -0.247756, 0.120134, -0.0545092, 0.256423, 0.965026, -0.269896, -0.934272, 0.233006, -232.165, 10.3124, -268.211 )
+transform = Transform( -0.982852, 0.15672, -0.0971591, -0.0545092, 0.256423, 0.965026, 0.176153, 0.953775, -0.243483, -231.102, 10.3124, -269.134 )
 
 [node name="3" type="Position3D" parent="PaperSpawns"]
 transform = Transform( -0.954893, -0.295921, 0.0246939, -0.0545092, 0.256423, 0.965026, -0.291904, 0.920151, -0.260987, 139.706, 10.686, -191.394 )

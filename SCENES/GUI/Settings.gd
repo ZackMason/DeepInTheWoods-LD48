@@ -28,7 +28,7 @@ func _ready():
 #---------------------------------------------------------------------------------------------------
 
 
-func _on_Exit_pressed():
+func _on_Back_pressed():
 	if not ingame:
 		get_tree().change_scene("res://SCENES/GUI/Main Menu.tscn")
 	else:
@@ -39,3 +39,6 @@ func _on_HSlider_value_changed(value):
 	Globals.MOUSE_SENSITIVITY = value
 	
 	pass # Replace with function body.
+
+func _on_Exit_pressed():
+	get_tree().quit()

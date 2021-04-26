@@ -26,7 +26,7 @@ func _ready():
 	ritual_complete()
 	
 func _input(event):
-	if Input.is_key_pressed(KEY_8):
+	if Input.is_key_pressed(KEY_8) and false:
 		ritual_progress.paper = true
 		ritual_progress.candle = true
 		ritual_progress.skull = true

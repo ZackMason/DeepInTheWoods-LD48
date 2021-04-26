@@ -4,7 +4,7 @@
 [ext_resource path="res://SCENES/GAME/LEVELS/TransitionTunnel.gd" type="Script" id=2]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 3.68614, 10.4268, 10.8871 )
+extents = Vector3( 1.10013, 10.4268, 10.8871 )
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0, 0, 0, 1 )
@@ -21,9 +21,10 @@ script = ExtResource( 2 )
 [node name="Model" parent="." instance=ExtResource( 1 )]
 
 [node name="A" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7317, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="A"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.18435, 7.72182, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.858418, 7.72182, -0.305695 )
 shape = SubResource( 1 )
 
 [node name="B" type="Area" parent="."]
